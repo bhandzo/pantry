@@ -1,0 +1,11 @@
+src/
+src/__tests__/
+*.ts
+!dist/**
+.git/
+.github/
+vitest.config.ts
+tsconfig.json
+biome.json
+*.test.*
+.beads/

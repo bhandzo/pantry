@@ -1,0 +1,44 @@
+{
+  "manifest_version": "0.3",
+  "name": "granola-mcp",
+  "display_name": "Granola Meeting Intelligence",
+  "version": "1.0.0",
+  "description": "Access your Granola meeting notes, transcripts, and analytics directly from Claude",
+  "long_description": "Connects to your local Granola installation to list and retrieve meeting notes and transcripts. Supports date filtering, multiple content formats, and file export with YAML frontmatter. All authentication is handled locally via your existing Granola login.",
+  "author": {
+    "name": "Ben Handzo",
+    "url": "https://github.com/bhandzo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bhandzo/granola-mcp"
+  },
+  "homepage": "https://github.com/bhandzo/granola-mcp",
+  "support": "https://github.com/bhandzo/granola-mcp/issues",
+  "server": {
+    "type": "node",
+    "entry_point": "dist/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/dist/index.js"]
+    }
+  },
+  "tools": [
+    { "name": "list-notes", "description": "List Granola meeting notes with optional date filtering" },
+    { "name": "list-transcripts", "description": "List meetings that have transcripts, with optional date filtering" },
+    { "name": "get-note", "description": "Get the full content of a specific Granola note by ID" },
+    { "name": "get-transcript", "description": "Get the full transcript of a specific Granola meeting by document ID" }
+  ],
+  "keywords": ["granola", "meetings", "transcripts", "notes", "local"],
+  "license": "MIT",
+  "compatibility": {
+    "claude_desktop": ">=0.10.0",
+    "platforms": ["darwin", "win32"],
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  },
+  "privacy_policies": [
+    "https://granola.ai/privacy"
+  ]
+}
