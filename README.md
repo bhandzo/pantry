@@ -9,7 +9,25 @@ Works with any MCP-compatible client: [Claude Code](https://docs.anthropic.com/e
 - **Node.js** >= 18
 - **Granola desktop app** installed, running, and logged in (the server reads your local auth token)
 
-## Setup
+## Installation
+
+### Claude Desktop (one-click via MCP Bundle)
+
+Download the latest `pantry.mcpb` bundle from [Releases](https://github.com/bhandzo/pantry/releases), then double-click it. Claude Desktop will install the server automatically.
+
+Alternatively, install from the command line:
+
+```bash
+claude mcp add-from-bundle pantry.mcpb
+```
+
+### Claude Code
+
+```bash
+claude mcp add pantry node /absolute/path/to/pantry/dist/index.js
+```
+
+### Manual setup (any MCP client)
 
 ```bash
 git clone https://github.com/bhandzo/pantry.git
@@ -18,20 +36,12 @@ npm install
 npm run build
 ```
 
-### Add to Claude Code
-
-```bash
-claude mcp add pantry node /absolute/path/to/pantry/dist/index.js
-```
-
-### Add to Claude Desktop
-
-Add to your `claude_desktop_config.json`:
+Add to your client's MCP config (e.g. `claude_desktop_config.json`):
 
 ```json
 {
   "mcpServers": {
-    "granola": {
+    "pantry": {
       "command": "node",
       "args": ["/absolute/path/to/pantry/dist/index.js"]
     }
@@ -115,6 +125,16 @@ npm run lint:fix   # auto-fix lint issues
 npm run typecheck  # type check without emitting
 npm run build      # compile TypeScript to dist/
 ```
+
+### Building the MCP Bundle
+
+To generate a `pantry.mcpb` bundle for distribution:
+
+```bash
+mise run bundle
+```
+
+This compiles TypeScript and packs the server into a single `.mcpb` file using `@anthropic-ai/mcpb`. The bundle includes only the built `dist/` output and runtime dependencies (source, tests, and config files are excluded via `.mcpbignore`).
 
 ### Project structure
 
